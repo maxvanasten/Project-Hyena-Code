@@ -30,14 +30,14 @@ const resizeCanvas = () => {
 }
 
 const drawPlayer = (x, y, angle) => {
-    CTX.setTransform(1, 0, 0, 1, x, y);  // set scale and origin
+    CTX.setTransform(1, 0, 0, 1, x, y); // set scale and origin
     CTX.rotate(angle); // set angle
-    
+
     CTX.fillStyle = "#00FF00";
     CTX.fillRect(-50, -50, 100, 100);
 
     CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
- }
+}
 
 //Runs at 60 fps
 const draw = () => {
@@ -49,8 +49,10 @@ const draw = () => {
     drawPlayer(localPos.x, localPos.y, localAngle);
 
     // Draw other players
-    localPlayers.forEach(player=>{
-        drawPlayer(player.pos.x, player.pos.y, player.angle);
+    localPlayers.forEach(player => {
+        if (player.id != socket.id) {
+            drawPlayer(player.pos.x, player.pos.y, player.angle);
+        }
     })
 }
 
@@ -62,6 +64,6 @@ socket.on('position-update', (newPos) => {
     localPos = newPos;
 })
 
-socket.on('players', (players)=>{
+socket.on('players', (players) => {
     localPlayers = players;
 })
