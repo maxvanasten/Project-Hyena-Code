@@ -1,8 +1,14 @@
 // Define controls
-const KB_CONTROLS = {
-    "kb_forward": 87,
-    "kb_backward": 83
-}
+const KB_CONTROLS = [
+    {
+        identifier: "forward",
+        code: 87
+    },
+    {
+        identifier: "backward",
+        code: 83
+    }
+]
 
 class InputManager {
     constructor() {
@@ -44,9 +50,9 @@ class InputManager {
         // Check every possible control
         KB_CONTROLS.forEach(control => {
             // If control is pressed
-            if (this.keymap[KB_CONTROLS[control]]) {
+            if (this.keymap[control.code]) {
                 // Add input to array
-                this.inputs.push(control);
+                this.inputs.push(control.identifier);
             }
         })
 
