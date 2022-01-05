@@ -63,7 +63,15 @@ setInterval(() => {
     io.to(player.id).emit('position-update', player.pos);
 
     // Send players to client
-    io.to(player.id).emit('players', players);
+    let playerArray = [];
+    players.forEach(p=>{
+      const optimizedPlayer = {
+        pos: p.pos,
+        angle: p.angle
+      }
+      playerArray.push(optimizedPlayer);
+    })
+    io.to(player.id).emit('players', playerArray);
   })
 
 
