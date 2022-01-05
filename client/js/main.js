@@ -52,18 +52,6 @@ const draw = () => {
     localPlayers.forEach(player=>{
         drawPlayer(player.pos.x, player.pos.y, player.angle);
     })
-
-    // TESTING ANGLES
-    // Get direction vector
-    let dirVec = {
-        x: inputManager.mouse.x - localPos.x,
-        y: inputManager.mouse.y - localPos.y
-    }
-
-    // Test directional vector against x-axis
-    let angle = Math.atan2(dirVec.y, dirVec.x);
-    localPos.angle = angle;
-    console.log(angle*RADIANS_TO_DEGREES);
 }
 
 // Add resize event listener
