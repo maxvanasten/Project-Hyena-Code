@@ -2,6 +2,18 @@ let localPos = {
     x: 300,
     y: 300
 }
+let newPos = {
+    x: localPos.x,
+    y: localPos.y
+}
+let lerpVal = 0;
+
+const lerp = (value1, value2, amount) => {
+    amount = amount < 0 ? 0 : amount;
+    amount = amount > 1 ? 1 : amount;
+    return value1 + (value2 - value1) * amount;
+}
+
 let localAngle = 0;
 
 // Stores other players information necessary for rendering
@@ -41,6 +53,14 @@ const drawPlayer = (x, y, angle) => {
 
 //Runs at 60 fps
 const draw = () => {
+    // Loop the lerpVal variable
+    lerpVal+=0.01;
+    if (lerpVal >= 1) {
+        lerpVal = 0;
+    }
+    // Lerp
+    localPos.x = lerp(localPos.x, newPos.x, lerpVal);
+    localPos.y = lerp(localPos.y, newPos.y, lerpVal);
     // Clear screen
     CTX.fillStyle = "#545454";
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
@@ -60,8 +80,8 @@ const draw = () => {
 window.addEventListener("resize", resizeCanvas);
 
 // Handle socket.io messages
-socket.on('position-update', (newPos) => {
-    localPos = newPos;
+socket.on('position-update', (newPosition) => {
+    newPos = newPosition;
 })
 
 socket.on('players', (players) => {
