@@ -28,6 +28,12 @@ class InputManager {
             down: false
         }
         this.inputs = [];
+        this.camera = {
+            topLeftX: 0,
+            topLeftY: 0,
+            width: 0,
+            height: 0
+        }
 
         // Add eventlisteners
         window.addEventListener("keydown", (e)=>{
@@ -71,7 +77,8 @@ class InputManager {
         // Send the input to the server
         socket.emit('input-update', {
             inputArray: this.inputs,
-            angle: localAngle
+            angle: localAngle,
+            camera: this.camera
         });
 
         // Debugging

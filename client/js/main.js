@@ -84,6 +84,7 @@ window.addEventListener("resize", resizeCanvas);
 // Handle socket.io messages
 socket.on('position-update', (newPosition) => {
     newPos = newPosition;
+
 })
 
 socket.on('players', (players) => {
