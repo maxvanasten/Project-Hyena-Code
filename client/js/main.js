@@ -1,4 +1,11 @@
+let pos = {
+    x: 300,
+    y: 300
+}
+
+// Define empty variables
 let CTX, CANVAS;
+let inputManager;
 
 //Runs once on page load
 const init = () => {
@@ -6,6 +13,8 @@ const init = () => {
     CANVAS.width = innerWidth;
     CANVAS.height = innerHeight;
     CTX = CANVAS.getContext('2d');
+
+    inputManager = new InputManager();
 }
 
 //Runs when the screen is resized
@@ -16,8 +25,13 @@ const resizeCanvas = () => {
 
 //Runs at 60 fps
 const draw = () => {
+    // Clear screen
     CTX.fillStyle = "#545454";
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
+
+    // Draw player
+    CTX.fillStyle = "#00FF00";
+    CTX.fillRect(pos.x, pos.y, 100, 100);
 }
 
 window.addEventListener("resize", resizeCanvas);

@@ -8,6 +8,8 @@
     <title>Project: Hyena</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <script src="js/inputmanager.js"></script>
+
     <script src="js/main.js"></script>
 
 </head>
@@ -19,6 +21,7 @@
         init();
         //Set up drawloop & other continuous loops.
         setInterval(() => {
+            inputManager.handleInput();
             draw();
         }, 1000 / 60)
     </script>
