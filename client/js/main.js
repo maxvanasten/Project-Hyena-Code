@@ -59,7 +59,7 @@ const draw = () => {
 
     // Draw player
     // Loop the lerpVal variable
-    lerpVal+=0.25;
+    lerpVal+=0.1;
     if (lerpVal > 1) {
         lerpVal = 0;
         localPos = newPos;
