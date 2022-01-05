@@ -28,12 +28,12 @@ io.on('connection', (socket) => {
 
   // When the 'input-update' event is RECEIVED FROM the client
   socket.on('input-update', (data) => {
+    console.log("INPUT-UPDATE RECEIVED")
     // Find the player
     players.forEach(player => {
       if (player.id == socket.id) {
         // Set the players input
         player.input = data.inputArray;
-        console.log(player.input);
         player.angle = data.angle;
       }
     })

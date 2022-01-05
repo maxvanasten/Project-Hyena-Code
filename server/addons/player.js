@@ -5,7 +5,7 @@ class Player {
             x: parseInt(pos.x),
             y: parseInt(pos.y)
         }
-        this.angle = 0;
+        this.angle = process.env.PLAYER_START_ANGLE;
         this.input = [];
 
 
