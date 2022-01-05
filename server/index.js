@@ -8,6 +8,9 @@ const {
 } = require("socket.io");
 const io = new Server(server);
 
+// Load addons
+const Player = require('./addons/player.js');
+
 //Tell express to server the client/ 
 app.use(express.static('../client'))
 
@@ -18,25 +21,22 @@ let players = [];
 io.on('connection', (socket) => {
   console.log('a user connected');
   // Create a new player object
-  const player = {
-    id: socket.id,
-    pos: {
-      x: 300,
-      y: 300,
-      angle: 0,
-    },
-    input: []
-  }
+  const player = new Player(socket.id);
 
   players.push(player);
 
+  // When the 'input-update' event is RECEIVED FROM the client
   socket.on('input-update', (inputArray) => {
+    // Find the player
     players.forEach(player => {
       if (player.id == socket.id) {
+        // Set the players input
         player.input = inputArray;
       }
     })
   });
+
+  // When the client is disconnected
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
@@ -48,20 +48,10 @@ server.listen(80, () => {
 
 // Main processing loop
 setInterval(() => {
-
   players.forEach(player => {
-    if (player.input.length) {
-      // Process inputs
-      player.input.forEach((input)=>{
-        if (input == "forward") {
-          player.pos.y--;
-        }
-        if (input == "backward") {
-          player.pos.y++;
-        }
-      })
-      // Send new positions
-      io.to(player.id).emit('position-update', player.pos);
-    }
+    // Handle movement
+    player.handleMovement();
+    // Send new position to client
+    io.to(this.id).emit('position-update', this.pos);
   })
 });
