@@ -66,6 +66,7 @@ setInterval(() => {
     let playerArray = [];
     players.forEach(p=>{
       const optimizedPlayer = {
+        id: p.id,
         pos: p.pos,
         angle: p.angle
       }
