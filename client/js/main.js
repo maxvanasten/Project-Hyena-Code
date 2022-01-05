@@ -38,6 +38,7 @@ const draw = () => {
     CTX.rotate(localPos.angle)
     CTX.translate(-localPos.x-50, -localPos.y-50);
     CTX.fillRect(localPos.x, localPos.y, 100, 100);
+    CTX.beginPath();
 
 
     // TESTING ANGLES
