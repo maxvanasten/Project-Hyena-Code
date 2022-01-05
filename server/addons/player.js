@@ -8,7 +8,7 @@ class Player {
         }
         this.input = [];
 
-        this.movementSpeed = process.env.PLAYER_MOVEMENT_SPEED;
+        this.movementSpeed = parseInt(process.env.PLAYER_MOVEMENT_SPEED);
     }
 
     handleMovement() {
