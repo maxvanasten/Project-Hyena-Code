@@ -1,14 +1,14 @@
 class Player {
-    constructor(id) {
+    constructor(id, pos) {
         this.id = id;
         this.pos = {
-            x: 400,
-            y: 300,
-            angle: 0
+            x: pos.x,
+            y: pos.y,
+            angle: pos.angle
         }
         this.input = [];
 
-        this.movementSpeed = 1;
+        this.movementSpeed = process.env.PLAYER_MOVEMENT_SPEED;
     }
 
     handleMovement() {

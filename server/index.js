@@ -22,7 +22,7 @@ let players = [];
 io.on('connection', (socket) => {
   console.log('a user connected');
   // Create a new player object
-  const player = new Player(socket.id);
+  const player = new Player(socket.id, {x: process.env.PLAYER_START_X, y: process.env.PLAYER_START_Y, angle: process.env.PLAYER_START_ANGLE});
 
   players.push(player);
 
@@ -49,8 +49,8 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(80, () => {
-  console.log('listening on *:80');
+server.listen(process.env.PORT, () => {
+  console.log(`Project: Hyena server running on port ${process.env.PORT}`);
 });
 
 // Main processing loop
