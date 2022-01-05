@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
     console.log("INPUT-UPDATE RECEIVED")
     // Find the player
     players.forEach(player => {
+      console.log(player.id+" : "+socket.id);
       if (player.id == socket.id) {
-        console.log("PLAYER FOUND")
         // Set the players input
         player.input = data.inputArray;
         player.angle = data.angle;
