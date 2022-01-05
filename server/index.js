@@ -1,18 +1,18 @@
-const express = require('express')
-const app = express()
-const port = 80
+const express = require('express');
+const app = express();
 const http = require('http');
 const server = http.createServer(app);
-
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-app.use(express.static('../client'))
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
 io.on('connection', (socket) => {
   console.log('a user connected');
 });
 
-server.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+server.listen(80, () => {
+  console.log('listening on *:80');
+});
