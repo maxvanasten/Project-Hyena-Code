@@ -53,19 +53,21 @@ const drawPlayer = (x, y, angle) => {
 
 //Runs at 60 fps
 const draw = () => {
-    // Loop the lerpVal variable
-    lerpVal+=0.1;
-    if (lerpVal >= 1) {
-        lerpVal = 0;
-    }
-    // Lerp
-    localPos.x = lerp(localPos.x, newPos.x, lerpVal);
-    localPos.y = lerp(localPos.y, newPos.y, lerpVal);
     // Clear screen
     CTX.fillStyle = "#545454";
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
     // Draw player
+    // Loop the lerpVal variable
+    lerpVal+=0.2;
+    if (lerpVal > 1) {
+        lerpVal = 0;
+        localPos = newPos;
+    }
+    // Lerp
+    localPos.x = lerp(localPos.x, newPos.x, lerpVal);
+    localPos.y = lerp(localPos.y, newPos.y, lerpVal);
+    
     drawPlayer(localPos.x, localPos.y, localAngle);
 
     // Draw other players
