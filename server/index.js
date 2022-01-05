@@ -66,6 +66,12 @@ setInterval(() => {
     io.to(player.id).emit('position-update', player.pos);
 
     // Send all other players information
+    let otherPlayers = players.splice();
+    otherPlayers.forEach(p=>{
+      if (p.id == player.id) {
+        otherPlayers.splice(p);
+      }
+    })
     io.to(player.id).emit('players', players);
   })
 
