@@ -54,7 +54,7 @@ const drawPlayer = (x, y, angle) => {
 //Runs at 60 fps
 const draw = () => {
     // Loop the lerpVal variable
-    lerpVal+=0.01;
+    lerpVal+=0.1;
     if (lerpVal >= 1) {
         lerpVal = 0;
     }
