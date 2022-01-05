@@ -8,6 +8,17 @@ let newPos = {
 }
 let lerpVal = 0;
 
+let camera = {
+    x: localPos.x,
+    y: localPos.y,
+    focussed: false,
+    focusPoint: {
+        x: 0,
+        y: 0
+    },
+    zoom: 1,
+}
+
 const lerp = (value1, value2, amount) => {
     amount = amount < 0 ? 0 : amount;
     amount = amount > 1 ? 1 : amount;
@@ -57,6 +68,9 @@ const draw = () => {
     CTX.fillStyle = "#545454";
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
+    CTX.save();
+    // Adjust for camera
+    CTX.translate(localPos.x, localPos.y);
     // Draw player
     // Loop the lerpVal variable
     lerpVal+=0.01;
@@ -76,15 +90,16 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
+    CTX.restore();
 }
 
 // Add resize event listener
 window.addEventListener("resize", resizeCanvas);
 
 // Handle socket.io messages
-socket.on('position-update', (newPosition) => {
-    newPos = newPosition;
-
+socket.on('position-update', (data) => {
+    newPos = data.pos;
+    camera = data.camera;
 })
 
 socket.on('players', (players) => {

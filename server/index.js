@@ -22,7 +22,10 @@ let players = [];
 io.on('connection', (socket) => {
   console.log('a user connected');
   // Create a new player object
-  const player = new Player(socket.id, {x: process.env.PLAYER_START_X, y: process.env.PLAYER_START_Y});
+  const player = new Player(socket.id, {
+    x: process.env.PLAYER_START_X,
+    y: process.env.PLAYER_START_Y
+  });
 
   players.push(player);
 
@@ -60,11 +63,14 @@ setInterval(() => {
     // Handle movement
     player.handleMovement();
     // Send new position to client
-    io.to(player.id).emit('position-update', player.pos);
+    io.to(player.id).emit('position-update', {
+      pos: player.pos,
+      camera: player.camera
+    });
 
     // Send players to client
     let playerArray = [];
-    players.forEach(p=>{
+    players.forEach(p => {
       const optimizedPlayer = {
         id: p.id,
         pos: p.pos,
