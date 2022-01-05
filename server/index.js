@@ -33,6 +33,7 @@ io.on('connection', (socket) => {
       if (player.id == socket.id) {
         // Set the players input
         player.input = data.inputArray;
+        console.log(player.input);
         player.angle = data.angle;
       }
     })
