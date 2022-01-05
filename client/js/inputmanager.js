@@ -65,7 +65,7 @@ class InputManager {
         })
 
         // Calculate looking angle
-        let angle = Math.atan2(inputManager.mouse.y - y, inputManager.mouse.x - x)
+        let angle = Math.atan2(inputManager.mouse.y - localPos.y, inputManager.mouse.x - localPos.x)
         localAngle = angle;
 
         // Send the input to the server
