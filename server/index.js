@@ -39,6 +39,12 @@ io.on('connection', (socket) => {
   // When the client is disconnected
   socket.on('disconnect', () => {
     console.log('user disconnected');
+    // Remove player from player array
+    players.forEach(player => {
+      if (player.id == socket.id) {
+        players.splice(player);
+      }
+    })
   });
 });
 
