@@ -7,6 +7,8 @@ class Player {
             angle: 0
         }
         this.input = [];
+
+        this.movementSpeed = 40;
     }
 
     handleMovement() {
@@ -14,16 +16,16 @@ class Player {
             // Process inputs
             this.input.forEach((input) => {
                 if (input == "forward") {
-                    this.pos.y--;
+                    this.pos.y -= this.movementSpeed;
                 }
                 if (input == "backward") {
-                    this.pos.y++;
+                    this.pos.y += this.movementSpeed;
                 }
                 if (input == "left") {
-                    this.pos.x--;
+                    this.pos.x -= this.movementSpeed;
                 }
                 if (input == "right") {
-                    this.pos.x++;
+                    this.pos.x += this.movementSpeed;
                 }
             })
         }
