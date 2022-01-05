@@ -23,12 +23,13 @@ io.on('connection', (socket) => {
   console.log('a user connected');
   // Create a new player object
   const player = new Player(socket.id, {x: process.env.PLAYER_START_X, y: process.env.PLAYER_START_Y});
+  console.log("Create player object")
 
   players.push(player);
+  console.log("Added player to list, new players: "+JSON.stringify(players));
 
   // When the 'input-update' event is RECEIVED FROM the client
   socket.on('input-update', (data) => {
-    console.log("INPUT-UPDATE RECEIVED")
     // Find the player
     players.forEach(player => {
       console.log(player.id+" : "+socket.id);
