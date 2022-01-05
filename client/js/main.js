@@ -1,4 +1,4 @@
-let pos = {
+let localPos = {
     x: 300,
     y: 300
 }
@@ -31,7 +31,7 @@ const draw = () => {
 
     // Draw player
     CTX.fillStyle = "#00FF00";
-    CTX.fillRect(pos.x, pos.y, 100, 100);
+    CTX.fillRect(localPos.x, localPos.y, 100, 100);
 }
 
 // Add resize event listener
@@ -39,7 +39,7 @@ window.addEventListener("resize", resizeCanvas);
 
 // Handle socket.io messages
 socket.on('position-update', (newPos)=>{
-    pos = newPos;
+    localPos = newPos;
 })
 
 
