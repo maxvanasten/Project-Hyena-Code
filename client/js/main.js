@@ -37,7 +37,7 @@ const draw = () => {
     CTX.fillStyle = "#00FF00";
 
     CTX.translate(localPos.x+50, localPos.y+50);
-    CTX.rotate(localPos.angle);
+    CTX.rotate(localPos.angle*RADIANS_TO_DEGREES);
     CTX.fillRect(0, 0, 100, 100);
     CTX.translate(-(localPos.x+50), -(localPos.y+50));
 
