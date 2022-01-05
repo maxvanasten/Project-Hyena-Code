@@ -71,7 +71,7 @@ class InputManager {
         // Send the input to the server
         socket.emit('input-update', {
             inputArray: this.inputs,
-            angle: angle
+            angle: localAngle
         });
 
         // Debugging
