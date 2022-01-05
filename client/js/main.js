@@ -66,7 +66,7 @@ const draw = () => {
 
     CTX.save();
     // Adjust for camera
-    CTX.setTransform(1, 0, 0, 1, localPos.x+camera.x, localPos.y+camera.y); // set scale and origin
+    CTX.setTransform(1, 0, 0, 1, camera.x, camera.y); // set scale and origin
     // Draw player
     // Loop the lerpVal variable
     lerpVal+=0.01;
@@ -86,7 +86,7 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
-    CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
+    // CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
     CTX.restore();
 }
 
