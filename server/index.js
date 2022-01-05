@@ -1,4 +1,5 @@
 //Setup
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -60,4 +61,4 @@ setInterval(() => {
     // Send new position to client
     io.to(player.id).emit('position-update', player.pos);
   })
-});
+}, process.env.TICKRATE);
