@@ -65,15 +65,8 @@ setInterval(() => {
     // Send new position to client
     io.to(player.id).emit('position-update', player.pos);
 
-    // Remove self from playerlist
-    let otherPlayers = players;
-    otherPlayers.forEach(p=>{
-      if (p.id == player.id) {
-        otherPlayers.splice(p);
-      }
-    })
     // Send all other players information
-    io.to(player.id).emit('players', otherPlayers);
+    io.to(player.id).emit('players', players);
   })
 
 
