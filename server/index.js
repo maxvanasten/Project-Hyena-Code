@@ -66,12 +66,16 @@ setInterval(() => {
     io.to(player.id).emit('position-update', player.pos);
 
     // Send all other players information
+    // Copy player array
     let otherPlayers = players.splice();
-    otherPlayers.forEach(p=>{
-      if (p.id == player.id) {
-        otherPlayers.splice(p);
+    // Remove player themselves from the array
+    for (let i = 0; i < otherPlayers.length; i++) {
+      if (otherPlayers[i].id == player.id) {
+        otherPlayers.splice(i, 1);
       }
-    })
+    }
+
+    // Send players to client
     io.to(player.id).emit('players', players);
   })
 
