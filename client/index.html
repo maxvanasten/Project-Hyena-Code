@@ -28,6 +28,7 @@
         init();
         //Set up drawloop & other continuous loops.
         setInterval(() => {
+            // Handle input
             inputManager.handleInput();
             draw();
         }, 1000 / 60)

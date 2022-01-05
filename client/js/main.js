@@ -34,7 +34,12 @@ const draw = () => {
     CTX.fillRect(pos.x, pos.y, 100, 100);
 }
 
+// Add resize event listener
 window.addEventListener("resize", resizeCanvas);
 
+// Handle socket.io messages
+socket.on('position-update', (newPos)=>{
+    pos = newPos;
+})
 
 
