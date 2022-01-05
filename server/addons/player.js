@@ -8,8 +8,7 @@ class Player {
         }
         this.input = [];
 
-        // this.movementSpeed = process.env.PLAYER_MOVEMENT_SPEED;
-        this.movementSpeed = 1;
+        this.movementSpeed = process.env.PLAYER_MOVEMENT_SPEED;
     }
 
     handleMovement() {
@@ -18,15 +17,19 @@ class Player {
             this.input.forEach((input) => {
                 if (input == "forward") {
                     this.pos.y -= this.movementSpeed;
+                    console.log(`[FORWARD] Moving player ${this.id} to ${this.pos.x}:${this.pos.y}`);
                 }
                 if (input == "backward") {
                     this.pos.y += this.movementSpeed;
+                    console.log(`[BACKWARD] Moving player ${this.id} to ${this.pos.x}:${this.pos.y}`);
                 }
                 if (input == "left") {
                     this.pos.x -= this.movementSpeed;
+                    console.log(`[LEFT] Moving player ${this.id} to ${this.pos.x}:${this.pos.y}`);
                 }
                 if (input == "right") {
                     this.pos.x += this.movementSpeed;
+                    console.log(`[RIGHT] Moving player ${this.id} to ${this.pos.x}:${this.pos.y}`);
                 }
             })
         }
