@@ -1,8 +1,11 @@
 let localPos = {
     x: 300,
-    y: 300,
-    angle: 0
+    y: 300
 }
+let localAngle = 0;
+
+// Stores other players information necessary for rendering
+let localPlayers = [];
 
 const RADIANS_TO_DEGREES = 180 / Math.PI;
 
@@ -26,9 +29,9 @@ const resizeCanvas = () => {
     CANVAS.height = innerHeight;
 }
 
-const drawPlayer = (x, y, lookx, looky) => {
+const drawPlayer = (x, y, angle) => {
     CTX.setTransform(1, 0, 0, 1, x, y);  // set scale and origin
-    CTX.rotate(Math.atan2(looky - y, lookx - x)); // set angle
+    CTX.rotate(angle); // set angle
     
     CTX.fillStyle = "#00FF00";
     CTX.fillRect(-50, -50, 100, 100);
@@ -44,6 +47,11 @@ const draw = () => {
 
     // Draw player
     drawPlayer(localPos.x, localPos.y, inputManager.mouse.x, inputManager.mouse.y);
+
+    // Draw other players
+    localPlayers.forEach(player=>{
+        drawPlayer(player.pos.x, player.pos.y, angle);
+    })
 
     // TESTING ANGLES
     // Get direction vector
@@ -64,4 +72,8 @@ window.addEventListener("resize", resizeCanvas);
 // Handle socket.io messages
 socket.on('position-update', (newPos) => {
     localPos = newPos;
+})
+
+socket.on('players', (players)=>{
+    localPlayers = players;
 })

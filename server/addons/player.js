@@ -3,9 +3,9 @@ class Player {
         this.id = id;
         this.pos = {
             x: parseInt(pos.x),
-            y: parseInt(pos.y),
-            angle: pos.angle
+            y: parseInt(pos.y)
         }
+        this.angle = 0;
         this.input = [];
 
 

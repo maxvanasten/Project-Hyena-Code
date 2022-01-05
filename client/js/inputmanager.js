@@ -64,9 +64,14 @@ class InputManager {
             }
         })
 
+        // Calculate looking angle
+        let angle = Math.atan2(inputManager.mouse.y - y, inputManager.mouse.x - x)
+        localAngle = angle;
+
         // Send the input to the server
         socket.emit('input-update', {
-            inputArray: this.inputs
+            inputArray: this.inputs,
+            angle: angle
         });
 
         // Debugging

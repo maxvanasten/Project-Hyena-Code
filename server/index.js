@@ -22,7 +22,7 @@ let players = [];
 io.on('connection', (socket) => {
   console.log('a user connected');
   // Create a new player object
-  const player = new Player(socket.id, {x: process.env.PLAYER_START_X, y: process.env.PLAYER_START_Y, angle: process.env.PLAYER_START_ANGLE});
+  const player = new Player(socket.id, {x: process.env.PLAYER_START_X, y: process.env.PLAYER_START_Y});
 
   players.push(player);
 
@@ -33,6 +33,7 @@ io.on('connection', (socket) => {
       if (player.id == socket.id) {
         // Set the players input
         player.input = data.inputArray;
+        player.angle = data.angle;
       }
     })
   });
@@ -60,5 +61,17 @@ setInterval(() => {
     player.handleMovement();
     // Send new position to client
     io.to(player.id).emit('position-update', player.pos);
+
+    // Remove self from playerlist
+    let otherPlayers = players;
+    otherPlayers.forEach(p=>{
+      if (p.id == player.id) {
+        otherPlayers.splice(p);
+      }
+    })
+    // Send all other players information
+    io.to(player.id).emit('players', otherPlayers);
   })
+
+
 }, process.env.TICKRATE);
