@@ -9,8 +9,8 @@ class Player {
         this.input = [];
         // setup camera
         this.camera = {
-            x: this.pos.x,
-            y: this.pos.y,
+            x: -this.pos.x,
+            y: -this.pos.y,
             focussed: false,
             focusPoint: {
                 x: 0,
@@ -90,8 +90,8 @@ class Player {
 
         // Update camera
         this.camera = {
-            x: this.pos.x,
-            y: this.pos.y,
+            x: -this.pos.x,
+            y: -this.pos.y,
             focussed: false,
             focusPoint: {
                 x: 0,
