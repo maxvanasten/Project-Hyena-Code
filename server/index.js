@@ -52,6 +52,6 @@ setInterval(() => {
     // Handle movement
     player.handleMovement();
     // Send new position to client
-    io.to(this.id).emit('position-update', this.pos);
+    io.to(this.id).emit('position-update', player.pos);
   })
 });
