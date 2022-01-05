@@ -8,7 +8,7 @@ class Player {
         }
         this.input = [];
 
-        this.movementSpeed = 40;
+        this.movementSpeed = 1;
     }
 
     handleMovement() {
