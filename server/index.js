@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
     players.forEach(player => {
       if (player.id == socket.id) {
         // Set the players input
-        player.input = data.inputs;
+        player.input = data.inputArray;
       }
     })
   });

@@ -66,14 +66,12 @@ class InputManager {
 
         // Send the input to the server
         socket.emit('input-update', {
-            inputs: this.inputs
+            inputArray: this.inputs
         });
 
         // Debugging
         if (this.inputs.length) {
             console.log(this.inputs);
         }
-
-        
     }
 }
