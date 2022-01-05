@@ -70,7 +70,7 @@ const draw = () => {
 
     CTX.save();
     // Adjust for camera
-    CTX.translate(localPos.x, localPos.y);
+    CTX.translate(camera.x, camera.y);
     // Draw player
     // Loop the lerpVal variable
     lerpVal+=0.01;
