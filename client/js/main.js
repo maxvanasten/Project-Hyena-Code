@@ -26,6 +26,16 @@ const resizeCanvas = () => {
     CANVAS.height = innerHeight;
 }
 
+const drawPlayer = (x, y, lookx, looky) => {
+    CTX.setTransform(1, 0, 0, 1, x, y);  // set scale and origin
+    CTX.rotate(Math.atan2(looky - y, lookx - x)); // set angle
+    
+    CTX.fillStyle = "#00FF00";
+    CTX.fillRect(-50, -50, 100, 100);
+
+    CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
+ }
+
 //Runs at 60 fps
 const draw = () => {
     // Clear screen
@@ -33,14 +43,7 @@ const draw = () => {
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
     // Draw player
-    CTX.save();
-    CTX.fillStyle = "#00FF00";
-
-    CTX.translate(localPos.x+50, localPos.y+50);
-    CTX.rotate(localPos.angle);
-    CTX.fillRect(0, 0, 100, 100);
-
-    CTX.restore();
+    drawPlayer(localPos.x, localPos.y, inputManager.mouse.x, inputManager.mouse.y);
 
     // TESTING ANGLES
     // Get direction vector
