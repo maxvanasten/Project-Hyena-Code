@@ -34,10 +34,10 @@ const draw = () => {
 
     // Draw player
     CTX.fillStyle = "#00FF00";
-    
+
     CTX.translate(localPos.x-50, localPos.y-50);
     CTX.rotate(localPos.angle);
-    CTX.translate(-localPos.x-50, -localPos.y-50);
+    CTX.translate(-(localPos.x-50), -(localPos.y-50));
 
     CTX.fillRect(localPos.x, localPos.y, 100, 100);
 
