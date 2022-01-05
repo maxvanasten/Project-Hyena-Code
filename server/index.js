@@ -27,12 +27,12 @@ io.on('connection', (socket) => {
   players.push(player);
 
   // When the 'input-update' event is RECEIVED FROM the client
-  socket.on('input-update', (inputArray) => {
+  socket.on('input-update', (data) => {
     // Find the player
     players.forEach(player => {
       if (player.id == socket.id) {
         // Set the players input
-        player.input = inputArray;
+        player.input = data.inputs;
       }
     })
   });

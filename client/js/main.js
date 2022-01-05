@@ -32,14 +32,23 @@ const draw = () => {
     // Draw player
     CTX.fillStyle = "#00FF00";
     CTX.fillRect(localPos.x, localPos.y, 100, 100);
+
+    // TESTING ANGLES
+    // Get direction vector
+    let dirVec = {
+        x: inputManager.mouse.x - localPos.x,
+        y: inputManager.mouse.y - localPos.y
+    }
+
+    // Test directional vector against x-axis
+    let angle = Math.atan2(dirVec.y, dirVec.x);
+    console.log(angle);
 }
 
 // Add resize event listener
 window.addEventListener("resize", resizeCanvas);
 
 // Handle socket.io messages
-socket.on('position-update', (newPos)=>{
+socket.on('position-update', (newPos) => {
     localPos = newPos;
 })
-
-
