@@ -3,6 +3,8 @@ let localPos = {
     y: 300
 }
 
+const RADIANS_TO_DEGREES = 57.2957795;
+
 // Define empty variables
 let CTX, CANVAS;
 let inputManager;
@@ -42,7 +44,7 @@ const draw = () => {
 
     // Test directional vector against x-axis
     let angle = Math.atan2(dirVec.y, dirVec.x);
-    console.log(angle);
+    console.log(angle*RADIANS_TO_DEGREES);
 }
 
 // Add resize event listener
