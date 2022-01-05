@@ -1,6 +1,7 @@
 let localPos = {
     x: 300,
-    y: 300
+    y: 300,
+    angle: 0
 }
 
 const RADIANS_TO_DEGREES = 57.2957795;
@@ -33,6 +34,7 @@ const draw = () => {
 
     // Draw player
     CTX.fillStyle = "#00FF00";
+    CTX.rotate(localPos.angle)
     CTX.fillRect(localPos.x-50, localPos.y-50, 100, 100);
 
     // TESTING ANGLES
@@ -44,6 +46,7 @@ const draw = () => {
 
     // Test directional vector against x-axis
     let angle = Math.atan2(dirVec.y, dirVec.x);
+    localPos.angle = angle;
     console.log(angle*RADIANS_TO_DEGREES);
 }
 
