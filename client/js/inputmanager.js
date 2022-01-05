@@ -2,11 +2,11 @@
 const KB_CONTROLS = [
     {
         identifier: "forward",
-        code: 87
+        code: "KeyW"
     },
     {
         identifier: "backward",
-        code: 83
+        code: "KeyS"
     }
 ]
 
