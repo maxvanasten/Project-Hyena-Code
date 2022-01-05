@@ -46,7 +46,7 @@ const draw = () => {
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
     // Draw player
-    drawPlayer(localPos.x, localPos.y, localAngle);
+    // drawPlayer(localPos.x, localPos.y, localAngle);
 
     // Draw other players
     localPlayers.forEach(player=>{
