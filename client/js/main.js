@@ -4,7 +4,7 @@ let localPos = {
     angle: 0
 }
 
-const RADIANS_TO_DEGREES = 57.2957795;
+const RADIANS_TO_DEGREES = 180 / Math.PI;
 
 // Define empty variables
 let CTX, CANVAS;
@@ -33,15 +33,15 @@ const draw = () => {
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
     // Draw player
+    CTX.save();
     CTX.fillStyle = "#00FF00";
 
-    CTX.translate(localPos.x, localPos.y);
+    CTX.translate(localPos.x+50, localPos.y+50);
     CTX.rotate(localPos.angle);
-    CTX.translate(-localPos.x, -localPos.y);
+    CTX.fillRect(0, 0, 100, 100);
+    CTX.translate(-(localPos.x+50), -(localPos.y+50));
 
-    CTX.fillRect(localPos.x, localPos.y, 100, 100);
-    CTX.rotate(-localPos.angle);
-
+    CTX.restore();
 
     // TESTING ANGLES
     // Get direction vector
