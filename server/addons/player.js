@@ -12,15 +12,21 @@ class Player {
     handleMovement() {
         if (this.input.length) {
             // Process inputs
-            this.input.forEach((input)=>{
-              if (input == "forward") {
-                this.pos.y--;
-              }
-              if (input == "backward") {
-                this.pos.y++;
-              }
+            this.input.forEach((input) => {
+                if (input == "forward") {
+                    this.pos.y--;
+                }
+                if (input == "backward") {
+                    this.pos.y++;
+                }
+                if (input == "left") {
+                    this.pos.x--;
+                }
+                if (input == "right") {
+                    this.pos.x++;
+                }
             })
-          }
+        }
     }
 }
 

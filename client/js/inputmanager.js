@@ -7,6 +7,14 @@ const KB_CONTROLS = [
     {
         identifier: "backward",
         code: "KeyS"
+    },
+    {
+        identifier: "left",
+        code: "KeyA"
+    },
+    {
+        identifier: "right",
+        code: "KeyD"
     }
 ]
 
