@@ -34,8 +34,10 @@ const draw = () => {
 
     // Draw player
     CTX.fillStyle = "#00FF00";
+    CTX.translate(localPos.x-50, localPos.y-50);
     CTX.rotate(localPos.angle)
-    CTX.fillRect(localPos.x-50, localPos.y-50, 100, 100);
+    CTX.fillRect(0, 0, 100, 100);
+    CTX.beginPath();
 
     // TESTING ANGLES
     // Get direction vector
