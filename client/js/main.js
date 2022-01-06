@@ -95,9 +95,7 @@ const draw = () => {
     localPos.x = lerp(localPos.x, newPos.x, lerpVal);
     localPos.y = lerp(localPos.y, newPos.y, lerpVal);
 
-    // Update camera
-    camera.x = localPos.x - CANVAS.width / 2;
-    camera.y = localPos.y - CANVAS.height / 2;
+    
 
     drawPlayer(localPos.x, localPos.y, localAngle);
 
@@ -107,6 +105,10 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
+
+    // Update camera
+    camera.x = localPos.x - CANVAS.width / 2;
+    camera.y = localPos.y - CANVAS.height / 2;
 }
 
 // Add resize event listener
