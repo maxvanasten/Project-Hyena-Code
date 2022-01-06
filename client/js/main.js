@@ -114,8 +114,8 @@ socket.on('position-update', (data) => {
     camera = data.camera;
 
     // Update camera
-    camera.x = localPos.x - CANVAS.width / 2;
-    camera.y = localPos.y - CANVAS.height / 2;
+    camera.x = newPos.x - CANVAS.width / 2;
+    camera.y = newPos.y - CANVAS.height / 2;
 })
 
 socket.on('players', (players) => {
