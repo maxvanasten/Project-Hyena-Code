@@ -59,7 +59,7 @@ const drawPlayer = (x, y, angle) => {
     CTX.fillStyle = "#00FF00";
     CTX.fillRect(-50, -50, 100, 100);
     CTX.restore();
-    CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
+    // CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
 }
 
 //Runs at 60 fps
@@ -68,7 +68,6 @@ const draw = () => {
     CTX.fillStyle = "#545454";
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
-    CTX.save();
     // Adjust for camera
     CTX.translate(localPos.x - CANVAS.width/2, localPos.y - CANVAS.width/2);
     // Draw player
@@ -90,7 +89,6 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
-    CTX.restore();
 }
 
 // Add resize event listener
