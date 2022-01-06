@@ -9,8 +9,6 @@ class Player {
         this.input = [];
         // setup camera
         this.camera = {
-            x: -this.pos.x,
-            y: -this.pos.y,
             focussed: false,
             focusPoint: {
                 x: 0,
@@ -88,17 +86,17 @@ class Player {
         this.vel.x *= this.friction;
         this.vel.y *= this.friction;
 
-        // Update camera
-        this.camera = {
-            x: -this.pos.x,
-            y: -this.pos.y,
-            focussed: false,
-            focusPoint: {
-                x: 0,
-                y: 0
-            },
-            zoom: 1,
-        }
+        // // Update camera
+        // this.camera = {
+        //     x: this.pos.x,
+        //     y: this.pos.y,
+        //     focussed: false,
+        //     focusPoint: {
+        //         x: 0,
+        //         y: 0
+        //     },
+        //     zoom: 1,
+        // }
     }
 
     applyForce(vector) {

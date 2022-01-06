@@ -69,7 +69,7 @@ const draw = () => {
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
     // Adjust for camera
-    CTX.translate(localPos.x - CANVAS.width/2, localPos.y - CANVAS.width/2);
+    CTX.translate(camera.x, camera.y);
     // Draw player
     // Loop the lerpVal variable
     lerpVal+=0.01;
@@ -98,6 +98,9 @@ window.addEventListener("resize", resizeCanvas);
 socket.on('position-update', (data) => {
     newPos = data.pos;
     camera = data.camera;
+    // Update camera
+    camera.x = localPos.x - CANVAS.width/2;
+    camera.y = localPos.y - CANVAS.height/2;
 })
 
 socket.on('players', (players) => {
