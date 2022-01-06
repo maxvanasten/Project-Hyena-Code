@@ -53,10 +53,12 @@ const resizeCanvas = () => {
 }
 
 const drawPlayer = (x, y, angle) => {
+    CTX.save();
     CTX.setTransform(1, 0, 0, 1, x, y); // set scale and origin
     CTX.rotate(angle); // set angle
     CTX.fillStyle = "#00FF00";
     CTX.fillRect(-50, -50, 100, 100);
+    CTX.restore();
     // CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
 }
 
@@ -69,7 +71,7 @@ const draw = () => {
     CTX.save();
     // Adjust for camera
     // CTX.translate(camera.x + (CANVAS.width/2), camera.y + (CANVAS.height/2));
-    CTX.setTransform(1, 0, 0, 1, camera.x + (CANVAS.width/2), camera.y + (CANVAS.height/2)); // set scale and origin
+    // CTX.setTransform(1, 0, 0, 1, camera.x + (CANVAS.width/2), camera.y + (CANVAS.height/2)); // set scale and origin
     // Draw player
     // Loop the lerpVal variable
     lerpVal+=0.01;
