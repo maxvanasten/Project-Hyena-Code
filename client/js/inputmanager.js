@@ -28,12 +28,6 @@ class InputManager {
             down: false
         }
         this.inputs = [];
-        this.camera = {
-            topLeftX: 0,
-            topLeftY: 0,
-            width: 0,
-            height: 0
-        }
 
         // Add eventlisteners
         window.addEventListener("keydown", (e)=>{
