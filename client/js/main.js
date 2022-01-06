@@ -19,6 +19,20 @@ let camera = {
     zoom: 1,
 }
 
+const screenToWorldCoordinates = (camera, x, y) => {
+    return {
+        x: x + camera.x,
+        y: y + camera.y
+    }
+}
+
+const worldToScreenCoordinates = (camera, x, y) => {
+    return {
+        x: x - camera.x,
+        y: y - camera.y
+    }
+}
+
 const lerp = (value1, value2, amount) => {
     amount = amount < 0 ? 0 : amount;
     amount = amount > 1 ? 1 : amount;

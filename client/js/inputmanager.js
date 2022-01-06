@@ -71,7 +71,10 @@ class InputManager {
         })
 
         // Calculate looking angle
-        let angle = Math.atan2(inputManager.mouse.y - localPos.y, inputManager.mouse.x - localPos.x)
+        mouseCoords = screenToWorldCoordinates(camera, inputManager.mouse.x, inputManager.mouse.y);
+
+
+        let angle = Math.atan2(mouseCoords.y - localPos.y, mouseCoords.x - localPos.x)
         localAngle = angle;
 
         // Send the input to the server

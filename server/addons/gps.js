@@ -1,7 +1,15 @@
-const screenToWorldCoordinates = (camera) => {
+module.exports = {
+    screenToWorldCoordinates: function (camera, x, y) {
+        return {
+            x: x + camera.x,
+            y: y + camera.y
+        }
+    },
 
-}
-
-const worldToScreenCoordinates = (camera) => {
-
-}
+    worldToScreenCoordinates: function (camera, x, y) {
+        return {
+            x: x - camera.x,
+            y: y - camera.y
+        }
+    }
+};
