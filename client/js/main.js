@@ -54,6 +54,7 @@ const resizeCanvas = () => {
 
 const drawPlayer = (x, y, angle) => {
     CTX.save();
+    CTX.translate(localPos.x, localPos.y);
     CTX.rotate(angle); // set angle
     CTX.fillStyle = "#00FF00";
     CTX.fillRect(0, 0, 100, 100);
