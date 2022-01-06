@@ -71,9 +71,7 @@ class InputManager {
         })
 
         // Calculate looking angle
-        mouseCoords = screenToWorldCoordinates(camera, inputManager.mouse.x, inputManager.mouse.y);
-
-
+        const mouseCoords = screenToWorldCoordinates(camera, inputManager.mouse.x, inputManager.mouse.y);
         let angle = Math.atan2(mouseCoords.y - localPos.y, mouseCoords.x - localPos.x)
         localAngle = angle;
 
