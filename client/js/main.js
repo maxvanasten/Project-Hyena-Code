@@ -95,8 +95,6 @@ const draw = () => {
     localPos.x = lerp(localPos.x, newPos.x, lerpVal);
     localPos.y = lerp(localPos.y, newPos.y, lerpVal);
 
-    
-
     drawPlayer(localPos.x, localPos.y, localAngle);
 
     // Draw other players
@@ -105,10 +103,6 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
-
-    // Update camera
-    camera.x = localPos.x - CANVAS.width / 2;
-    camera.y = localPos.y - CANVAS.height / 2;
 }
 
 // Add resize event listener
@@ -118,6 +112,10 @@ window.addEventListener("resize", resizeCanvas);
 socket.on('position-update', (data) => {
     newPos = data.pos;
     camera = data.camera;
+
+    // Update camera
+    camera.x = localPos.x - CANVAS.width / 2;
+    camera.y = localPos.y - CANVAS.height / 2;
 })
 
 socket.on('players', (players) => {
