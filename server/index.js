@@ -1,6 +1,5 @@
 //Setup
 require('dotenv').config()
-const cameraTools = require('./addons/gps.js');
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -12,12 +11,15 @@ const io = new Server(server);
 
 // Load addons
 const Player = require('./addons/player.js');
+const PlayerManager = require('./addons/playermanager');
+const cameraTools = require('./addons/cameratools.js');
 
-//Tell express to server the client/ 
+
+//Tell express to serve the client/ folder 
 app.use(express.static('../client'))
 
-// All players will be stored in here
-let players = [];
+// Initialize playermanager
+const playerManager = new PlayerManager();
 
 // Executes every time a user connects
 io.on('connection', (socket) => {
@@ -28,12 +30,12 @@ io.on('connection', (socket) => {
     y: process.env.PLAYER_START_Y
   });
 
-  players.push(player);
+  playerManager.players.push(player);
 
   // When the 'input-update' event is RECEIVED FROM the client
   socket.on('input-update', (data) => {
     // Find the player
-    players.forEach(player => {
+    playerManager.players.forEach(player => {
       if (player.id == socket.id) {
         // Set the players input
         player.input = data.inputArray;
@@ -46,9 +48,9 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
     // Remove player from player array
-    players.forEach(player => {
+    playerManager.players.forEach(player => {
       if (player.id == socket.id) {
-        players.splice(player);
+        playerManager.players.splice(player);
       }
     })
   });
@@ -60,7 +62,7 @@ server.listen(process.env.PORT, () => {
 
 // Main processing loop
 setInterval(() => {
-  players.forEach(player => {
+  playerManager.players.forEach(player => {
     // Handle movement
     player.handleMovement();
     // Send new position to client
@@ -71,7 +73,7 @@ setInterval(() => {
 
     // Send players to client
     let playerArray = [];
-    players.forEach(p => {
+    playerManager.players.forEach(p => {
       const optimizedPlayer = {
         id: p.id,
         pos: p.pos,
