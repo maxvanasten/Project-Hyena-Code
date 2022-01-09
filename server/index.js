@@ -14,7 +14,6 @@ const Player = require('./addons/player.js');
 const PlayerManager = require('./addons/playermanager');
 const cameraTools = require('./addons/cameratools.js');
 
-
 //Tell express to serve the client/ folder 
 app.use(express.static('../client'))
 
@@ -23,8 +22,8 @@ const playerManager = new PlayerManager();
 
 // Executes every time a user connects
 io.on('connection', (socket) => {
-  console.log('a user connected');
-  // Create a new player object
+  console.log(`User connected, socket ID: ${socket.id}`);
+  // Add player
   const player = new Player(socket.id, {
     x: process.env.PLAYER_START_X,
     y: process.env.PLAYER_START_Y
