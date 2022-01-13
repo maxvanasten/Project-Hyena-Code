@@ -86,8 +86,11 @@ setInterval(() => {
       camera: player.camera
     });
     // Send chunk to the client
+    let chunkX = Math.ceil(player.pos.x / parseFloat(process.env.CHUNK_WIDTH));
+    let chunkY = Math.ceil(player.pos.y / parseFloat(process.env.CHUNK_HEIGHT));
+    console.log(`Sending chunk ${chunkX}:${chunkY}`);
     io.to(player.id).emit('chunk-info', {
-      chunk: objectManager.getChunk(Math.ceil(player.pos.x / parseFloat(process.env.CHUNK_WIDTH)), Math.ceil(player.pos.y / parseFloat(process.env.CHUNK_HEIGHT)))
+      chunk: objectManager.getChunk(chunkX, chunkY)
     })
 
     // Send players to client
