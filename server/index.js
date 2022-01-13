@@ -23,7 +23,7 @@ app.use(express.static('../client'))
 
 // Initialize managers
 const playerManager = new PlayerManager();
-const objectManager = new objectManager();
+const objectManager = new ObjectManager();
 // TESTING: Add a custom chunk (before implementing chunkfiles)
 const newChunk = new Chunk(0, 0);
 const crateObject = new GameObject(500, 500, [
