@@ -111,14 +111,14 @@ const draw = () => {
     // CTX.translate(camera.x, camera.y);
     // Draw player
     // Loop the lerpVal variable
-    lerpVal += 0.001;
-    if (lerpVal > 1) {
-        lerpVal = 0;
-        localPos = newPos;
-    }
-    // Lerp
-    localPos.x = lerp(localPos.x, newPos.x, lerpVal);
-    localPos.y = lerp(localPos.y, newPos.y, lerpVal);
+    // lerpVal += 0.001;
+    // if (lerpVal > 1) {
+    //     lerpVal = 0;
+    //     localPos = newPos;
+    // }
+    // // Lerp
+    // localPos.x = lerp(localPos.x, newPos.x, lerpVal);
+    // localPos.y = lerp(localPos.y, newPos.y, lerpVal);
 
     // Draw chunk objects
     if (localChunk) {
