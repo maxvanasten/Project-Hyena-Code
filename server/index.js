@@ -14,16 +14,32 @@ const Player = require('./addons/player.js');
 const PlayerManager = require('./addons/playermanager');
 const cameraTools = require('./addons/cameratools.js');
 
+const ObjectManager = require("./addons/objectmanager");
+const Chunk = require("./addons/chunk.js");
+const GameObject = require("./addons/gameobject");
+
 //Tell express to serve the client/ folder 
 app.use(express.static('../client'))
 
-// Initialize playermanager
+// Initialize managers
 const playerManager = new PlayerManager();
+const objectManager = new objectManager();
+// TESTING: Add a custom chunk (before implementing chunkfiles)
+const newChunk = new Chunk(0, 0);
+const crateObject = new GameObject(500, 500, [
+  [0, 0, 200, 0],
+  [200, 0, 200, 200],
+  [200, 200, 0, 200],
+  [0, 200, 0, 0]
+], "noTexture");
+
+newChunk.addGameObject(crateObject);
+objectManager.addChunk(newChunk);
 
 // Executes every time a user connects
 io.on('connection', (socket) => {
   console.log(`User connected, socket ID: ${socket.id}`);
-  // Add player
+  // Add player to playermanager
   const player = new Player(socket.id, {
     x: process.env.PLAYER_START_X,
     y: process.env.PLAYER_START_Y
@@ -69,6 +85,10 @@ setInterval(() => {
       pos: player.pos,
       camera: player.camera
     });
+    // Send chunk to the client
+    io.to(player.id).emit('chunk-info', {
+      chunk: objectManager.getChunk(Math.ceil(player.pos.x / parseFloat(process.env.CHUNK_WIDTH)), Math.ceil(player.pos.y / parseFloat(process.env.CHUNK_HEIGHT)))
+    })
 
     // Send players to client
     let playerArray = [];

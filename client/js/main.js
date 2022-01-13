@@ -44,6 +44,8 @@ let localAngle = 0;
 // Stores other players information necessary for rendering
 let localPlayers = [];
 
+let localChunk;
+
 const RADIANS_TO_DEGREES = 180 / Math.PI;
 
 // Define empty variables
@@ -76,6 +78,29 @@ const drawPlayer = (x, y, angle) => {
     // CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
 }
 
+const drawObject = (obj) => {
+    CTX.save();
+    CTX.translate(obj.x - camera.x, obj.y - camera.y);
+    CTX.strokeStyle = "#FF0000";
+    
+    // Draw hitbox
+    obj.hitboxData.forEach(hitline=>{
+        let startX = hitline[0];
+        let startY = hitline[1];
+        let endX = hitline[2];
+        let endY = hitline[3];
+
+        CTX.beginPath();
+        CTX.moveTo(startX, startY);
+        CTX.lineTo(endX, endY);
+        CTX.stroke();
+    })
+
+    // TODO: Figure out how texturing is going to work
+
+    CTX.restore();
+}
+
 //Runs at 60 fps
 const draw = () => {
     // Clear screen
@@ -95,6 +120,14 @@ const draw = () => {
     localPos.x = lerp(localPos.x, newPos.x, lerpVal);
     localPos.y = lerp(localPos.y, newPos.y, lerpVal);
 
+    // Draw chunk objects
+    if (localChunk) {
+        localChunk.objects.forEach(obj=>{
+            //Render object
+            drawObject(obj);
+        })
+    }
+
     drawPlayer(localPos.x, localPos.y, localAngle);
 
     // Draw other players
@@ -103,6 +136,8 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
+
+
 }
 
 // Add resize event listener
@@ -120,4 +155,8 @@ socket.on('position-update', (data) => {
 
 socket.on('players', (players) => {
     localPlayers = players;
+})
+
+socket.on('chunk-info', (chunk) => {
+    localChunk = chunk;
 })
