@@ -33,7 +33,7 @@ class ObjectManager {
 
     addChunk(chunk) {
         //TODO: Check if chunk does not already exist (coordinates)
-        this.chunks.push();
+        this.chunks.push(chunk);
     }
 }
 

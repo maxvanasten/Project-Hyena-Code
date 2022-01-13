@@ -1,12 +1,12 @@
 // The chunk object will hold all of the objects that are present in that chunk
 
 class Chunk {
-    constructor() {
+    constructor(x, y) {
         this.objects = [];
 
         // The chunks X and Y position expressed in chunks
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
     }
 
     //Adds an object to this chunk
