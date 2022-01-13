@@ -89,6 +89,7 @@ setInterval(() => {
     let chunkX = Math.floor(player.pos.x / parseFloat(process.env.CHUNK_WIDTH));
     let chunkY = Math.floor(player.pos.y / parseFloat(process.env.CHUNK_HEIGHT));
     if (process.env.DEBUG) console.log(`Sending chunk ${chunkX}:${chunkY}`);
+    if (process.env.DEBUG) console.log(`Chunk Contents: ${objectManager.getChunk(chunkX, chunkY)}`);
     io.to(player.id).emit('chunk-info', {
       chunk: objectManager.getChunk(chunkX, chunkY)
     })
