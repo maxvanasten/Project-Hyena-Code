@@ -119,6 +119,8 @@ const draw = () => {
     // // Lerp
     // localPos.x = lerp(localPos.x, newPos.x, lerpVal);
     // localPos.y = lerp(localPos.y, newPos.y, lerpVal);
+    localPos.x = newPos.x;
+    localPos.y = newPos.y;
 
     // Draw chunk objects
     if (localChunk) {
