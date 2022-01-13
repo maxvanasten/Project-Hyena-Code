@@ -158,4 +158,5 @@ socket.on('players', (players) => {
 
 socket.on('chunk-info', (chunk) => {
     localChunk = chunk;
+    console.log(localChunk);
 })
