@@ -111,7 +111,7 @@ const draw = () => {
     // CTX.translate(camera.x, camera.y);
     // Draw player
     // Loop the lerpVal variable
-    lerpVal += 0.01;
+    lerpVal += 0.001;
     if (lerpVal > 1) {
         lerpVal = 0;
         localPos = newPos;
@@ -135,8 +135,6 @@ const draw = () => {
             drawPlayer(player.pos.x, player.pos.y, player.angle);
         }
     })
-
-
 }
 
 // Add resize event listener
