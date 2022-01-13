@@ -123,7 +123,7 @@ const draw = () => {
     // Draw chunk objects
     if (localChunk) {
         for (let i = 0; i < localChunk.objects.length; i++) {
-            drawObject(localChunk.objects(i));
+            drawObject(localChunk.objects[i]);
         }
     }
 
