@@ -108,7 +108,7 @@ const draw = () => {
     CTX.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
     // Adjust for camera
-    // CTX.translate(camera.x, camera.y);
+    CTX.translate(camera.x, camera.y);
     // Draw player
     // Loop the lerpVal variable
     // lerpVal += 0.001;
