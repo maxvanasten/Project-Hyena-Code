@@ -122,10 +122,9 @@ const draw = () => {
 
     // Draw chunk objects
     if (localChunk) {
-        localChunk.objects.forEach(obj=>{
-            //Render object
-            drawObject(obj);
-        })
+        for (let i = 0; i < localChunk.objects.length; i++) {
+            drawObject(localChunk.objects(i));
+        }
     }
 
     drawPlayer(localPos.x, localPos.y, localAngle);
