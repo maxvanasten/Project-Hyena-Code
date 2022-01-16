@@ -70,10 +70,10 @@ const resizeCanvas = () => {
 
 const drawPlayer = (x, y, angle) => {
     CTX.save();
-    CTX.translate(localPos.x - camera.x, localPos.y - camera.y);
+    CTX.translate(x - camera.x, y - camera.y);
     CTX.rotate(angle); // set angle
     CTX.fillStyle = "#00FF00";
-    CTX.fillRect(-50, -50, 100, 100);
+    CTX.fillRect(-25, -25, 50, 50);
     CTX.restore();
     // CTX.setTransform(1, 0, 0, 1, 0, 0); // restore default not needed if you use setTransform for other rendering operations
 }
