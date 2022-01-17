@@ -18,23 +18,23 @@ const ObjectManager = require("./addons/objectmanager");
 const Chunk = require("./addons/chunk.js");
 const GameObject = require("./addons/gameobject");
 
-//Tell express to serve the client/ folder 
+//Tell express to serve the client/ folder
 app.use(express.static('../client'))
 
 // Initialize managers
 const playerManager = new PlayerManager();
 const objectManager = new ObjectManager();
 // TESTING: Add a custom chunk (before implementing chunkfiles)
-const newChunk = new Chunk(0, 0);
-const crateObject = new GameObject(500, 500, [
-  [0, 0, 200, 0],
-  [200, 0, 200, 200],
-  [200, 200, 0, 200],
-  [0, 200, 0, 0]
-], "noTexture");
+// const newChunk = new Chunk(0, 0);
+// const crateObject = new GameObject(500, 500, [
+//   [0, 0, 200, 0],
+//   [200, 0, 200, 200],
+//   [200, 200, 0, 200],
+//   [0, 200, 0, 0]
+// ], "noTexture");
 
-newChunk.addGameObject(crateObject);
-objectManager.addChunk(newChunk);
+// newChunk.addGameObject(crateObject);
+// objectManager.addChunk(newChunk);
 
 // Executes every time a user connects
 io.on('connection', (socket) => {

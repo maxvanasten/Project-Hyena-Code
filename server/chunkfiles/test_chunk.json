@@ -1,0 +1,20 @@
+{
+    "type": "test_chunk",
+    "name": "Test Chunk",
+    "objects": [
+        {
+            "identifier": "Test_Box",
+            "position": {
+                "x": 200,
+                "y": 200
+            },
+            "hitboxData": [
+                [0, 0, 100, 0],
+                [100, 0, 100, 100],
+                [100, 100, 100, 0],
+                [100, 0, 0, 0]
+            ],
+            "textureSrc": ""
+        }
+    ]
+}
