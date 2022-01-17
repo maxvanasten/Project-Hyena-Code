@@ -17,6 +17,7 @@ const GameObject = require("./gameobject.js");
 
 // Add chunks manually
 const test_chunk = require("../chunkfiles/test_chunk.json");
+console.log(test_chunk);
 
 class ObjectManager {
     constructor() {
