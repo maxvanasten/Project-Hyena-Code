@@ -36,6 +36,9 @@ const objectManager = new ObjectManager();
 // newChunk.addGameObject(crateObject);
 // objectManager.addChunk(newChunk);
 
+// Generate world
+objectManager.generateWorld();
+
 // Executes every time a user connects
 io.on('connection', (socket) => {
   console.log(`User connected, socket ID: ${socket.id}`);
