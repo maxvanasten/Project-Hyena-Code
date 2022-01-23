@@ -46,6 +46,7 @@ class ObjectManager {
 
     addChunk(chunk) {
         //TODO: Check if chunk does not already exist (coordinates)
+        console.log(`Adding chunk ${chunk.x}, ${chunk.y}`);
         this.chunks.push(chunk);
     }
 
